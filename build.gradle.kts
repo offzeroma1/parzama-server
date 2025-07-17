@@ -15,11 +15,13 @@ java {
 
 configurations {
 	compileOnly {
+		// 어노테이션 의존성
 		extendsFrom(configurations.annotationProcessor.get())
 	}
 }
 
 repositories {
+	// ~/.gradle/caches/modules-2 (~/.m2/repository 랑 같은 거)
 	mavenCentral()
 	maven { url = uri("https://repo.spring.io/snapshot") }
 }
@@ -45,3 +47,11 @@ dependencies {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+	archiveFileName.set("app.jar")
+}
+
+/**
+ * tasks.named<Jar>("jar") {
+ * }
+*/
