@@ -1,3 +1,5 @@
-FROM openjdk:17-jdk-slim
-ADD /dev/libs/*.jar app.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+FROM openjdk:21-jdk-slim
+ENV JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"
+COPY build/libs/app.jar /dev/app.jar
+WORKDIR /dev
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]

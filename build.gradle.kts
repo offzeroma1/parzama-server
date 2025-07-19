@@ -49,6 +49,8 @@ tasks.withType<Test> {
 }
 tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
 	archiveFileName.set("app.jar")
+//	archiveVersion.set("1.0.0")                // 버전
+//	destinationDirectory.set(file("$buildDir/custom-output"))  // 결과물 위치
 }
 
 /**
